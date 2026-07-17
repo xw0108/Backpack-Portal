@@ -34,17 +34,20 @@ export default function App() {
             <NavButton 
               active={activeTab === 'vision'} 
               onClick={() => setActiveTab('vision')}
-              label="Project Vision"
+              label="Project Vision & Strategic Pillars"
+              subtitle="What we're doing"
             />
             <NavButton 
               active={activeTab === 'sandbox'} 
               onClick={() => setActiveTab('sandbox')}
-              label="Data Sandbox"
+              label="Data Sandbox & Functional Capabilities"
+              subtitle="What you get"
             />
             <NavButton 
               active={activeTab === 'onboarding'} 
               onClick={() => setActiveTab('onboarding')}
               label="Onboarding Hub"
+              subtitle="How to start"
             />
           </nav>
 
@@ -87,17 +90,18 @@ export default function App() {
   );
 }
 
-function NavButton({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) {
+function NavButton({ active, onClick, label, subtitle }: { active: boolean; onClick: () => void; label: string; subtitle?: string }) {
   return (
     <button
       onClick={onClick}
-      className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+      className={`px-6 py-2 rounded-full flex flex-col items-center justify-center transition-all duration-300 ${
         active 
           ? 'bg-emerald-500 text-stone-950' 
-          : 'text-stone-400 hover:text-stone-100'
+          : 'text-stone-400 hover:text-stone-100 hover:bg-stone-800/50'
       }`}
     >
-      {label}
+      <span className="text-sm font-bold">{label}</span>
+      {subtitle && <span className={`text-[10px] uppercase tracking-wider ${active ? 'text-emerald-950/70 font-bold' : 'text-stone-500'}`}>{subtitle}</span>}
     </button>
   );
 }

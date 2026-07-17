@@ -42,12 +42,12 @@ export function TabVision() {
           <p className="text-xs text-stone-400">Our "Bullseye Ambush" strategy uses ultra-low-power local audio sentinels that continuously listen and wake up high-power camera traps via local MQTT channels upon detection.</p>
         </div>
         <div className="bg-stone-900/80 border border-emerald-500/20 rounded-2xl p-6">
-          <h3 className="text-emerald-400 font-bold text-sm mb-2 uppercase tracking-wider">Absolute Privacy</h3>
-          <p className="text-xs text-stone-400">On-device processing using Raspberry Pi 4 that runs local real-time face-redaction algorithms. No unredacted human faces ever leave the edge network or leak to cloud storage.</p>
+          <h3 className="text-emerald-400 font-bold text-sm mb-2 uppercase tracking-wider">Smart Sensing</h3>
+          <p className="text-xs text-stone-400">Robust 3-step verification architecture: (1) Visual detection via wide-angle AI edge cameras tracking bird activity, (2) Audio matching of bird songs via external microphone arrays, and (3) Footfall sensors embedded on each perch confirming real physical landings.</p>
         </div>
         <div className="bg-stone-900/80 border border-emerald-500/20 rounded-2xl p-6">
-          <h3 className="text-emerald-400 font-bold text-sm mb-2 uppercase tracking-wider">Citizen Science</h3>
-          <p className="text-xs text-stone-400">Students actively engage with the workflow by validating AI classifications (MegaDetector/BirdNET) via an intuitive swiping UI, contributing to weekly model retraining.</p>
+          <h3 className="text-emerald-400 font-bold text-sm mb-2 uppercase tracking-wider">Innovative Hardware</h3>
+          <p className="text-xs text-stone-400">Multi-species alternating seed & nectar tray attracts all bird sizes. A completely open, see-through structure (no cameras inside the feeder) ensures fully unobstructed views from all angles while preserving natural context.</p>
         </div>
       </div>
     </motion.section>

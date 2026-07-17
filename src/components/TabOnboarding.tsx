@@ -167,7 +167,7 @@ function DiyConfigurator() {
         ) : (
           <Download className="w-5 h-5 mr-2" />
         )}
-        {downloading ? 'COMPILING JSON...' : 'GENERATE CONFIG.JSON'}
+        {downloading ? 'COMPILING JSON...' : 'GENERATE SAMPLE config.json FILE'}
       </button>
     </motion.div>
   );
