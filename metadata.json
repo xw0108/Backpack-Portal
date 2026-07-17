@@ -1,0 +1,6 @@
+{
+  "name": "Ecology Backpacks Portal",
+  "description": "A public-facing portal for the Ecology Backpacks (Camp Wildlife) project, featuring edge AI, citizen science, and interactive data sandboxes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
