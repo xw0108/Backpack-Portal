@@ -20,7 +20,7 @@ pod-name: i-saw-frontend-prod
 
 runtime-type: node
 
-runtime-version: "18.0"
+runtime-version: "20.0"
 
 # ──────────────────────────────────────────────────────────────────────
 # System Packages
