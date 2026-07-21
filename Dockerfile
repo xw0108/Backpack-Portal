@@ -17,7 +17,7 @@ RUN npm run build
 
 # ╭───────────╮
 # │ Run-Stage │
-# ╰───────────╯
+# ╰───────────╮
 FROM nginx:alpine AS run-stage
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf

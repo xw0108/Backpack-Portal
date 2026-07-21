@@ -9,10 +9,60 @@ permissions:
   contents: read
   packages: write
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: i-saw-frontend
+  IMAGE_VERSION: 0.1.0
+  POD_NAME: i-saw-frontend-prod
+  TAPIS_BASE_URL: https://icicleai.tapis.io
+
 jobs:
-  call-icicle-ci:
-    uses: icicle-ai/cicd-templates/.github/workflows/deploy-service.yaml@main
-    secrets:
-      TAPIS_TOKEN: ${{ secrets.TAPIS_ICICLE_PROD_TOKEN }}
-      REGISTRY_USERNAME: ${{ vars.REGISTRY_USERNAME }}
-      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_TOKEN }}
+  build-push-deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ vars.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+
+      - name: Compute image tag
+        id: image
+        run: |
+          OWNER_LC="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          echo "tag=${REGISTRY}/${OWNER_LC}/${IMAGE_NAME}:${IMAGE_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.image.outputs.tag }}
+          build-args: |
+            BUILD_SHA=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Trigger Tapis deploy
+        run: |
+          set -eu
+          http_code=$(curl -sS -X GET \
+            -H "X-Tapis-Token: ${{ secrets.TAPIS_ICICLE_PROD_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -o response.json -w '%{http_code}' \
+            "${TAPIS_BASE_URL}/v3/pods/${POD_NAME}/restart")
+          echo "HTTP $http_code"
+          cat response.json
+          [ "$http_code" -lt 400 ] || exit 1
