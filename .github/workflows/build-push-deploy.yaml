@@ -11,9 +11,9 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: i-saw-frontend
+  IMAGE_NAME: isawfrontend
   IMAGE_VERSION: 0.1.0
-  POD_NAME: i-saw-frontend-prod
+  POD_NAME: isawfrontendprod
   TAPIS_BASE_URL: https://icicleai.tapis.io
 
 jobs:
