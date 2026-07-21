@@ -1,0 +1,32 @@
+schema-version: 1
+
+# ──────────────────────────────────────────────────────────────────────
+# Service Identity
+# ──────────────────────────────────────────────────────────────────────
+
+service-name: i-saw-frontend
+
+service-version: 0.1.0
+
+project-name: icicle-project
+
+service-type: domain
+
+pod-name: i-saw-frontend-prod
+
+# ──────────────────────────────────────────────────────────────────────
+# Runtime Configuration
+# ──────────────────────────────────────────────────────────────────────
+
+runtime-type: node
+
+runtime-version: "18"
+
+# ──────────────────────────────────────────────────────────────────────
+# System Packages
+# ──────────────────────────────────────────────────────────────────────
+
+build-apt-packages: []
+
+runtime-apt-packages:
+  - ca-certificates

@@ -1,0 +1,14 @@
+name: Build & Push & Deploy
+
+on:
+  push:
+    branches: [ staging, main, release-* ]
+  workflow_dispatch:
+
+jobs:
+  call-icicle-ci:
+    uses: icicle-ai/cicd-templates/.github/workflows/deploy-service.yaml@main
+    secrets:
+      TAPIS_TOKEN: ${{ secrets.TAPIS_ICICLE_PROD_TOKEN }}
+      REGISTRY_USERNAME: ${{ vars.REGISTRY_USERNAME }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_TOKEN }}
