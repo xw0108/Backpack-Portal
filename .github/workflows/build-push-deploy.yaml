@@ -5,6 +5,10 @@ on:
     branches: [ staging, main, release-* ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   call-icicle-ci:
     uses: icicle-ai/cicd-templates/.github/workflows/deploy-service.yaml@main
